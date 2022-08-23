@@ -1,71 +1,16 @@
-# well-being README
+# well-being
 
-This is the README for your extension "well-being". After writing up a brief description, we recommend including the following sections.
+well-being 是一款简易的 Vscode 插件，它可以自定义提醒时间，告诉开发者可以适当的休息一下。
 
-## Features
+## 说明
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+安装后，点击侧边栏的图标就可以打开一个 panel ，然后可以设置提醒时间，如果直接关闭 panel，将不会自动提醒。
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+设置时间后（时间单位是分钟），点击“确定”按钮后，会自动关闭 panel，不影响开发者使用 vscode，插件会在设置的时间到期后提醒开发者注意休息。
 
 **Enjoy!**
+
+
+## 如何发布呢？
+
+[publishing-extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)

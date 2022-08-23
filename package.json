@@ -3,6 +3,15 @@
   "displayName": "well-being",
   "description": "healthy code",
   "version": "0.0.1",
+  "publisher": "ketong",
+	"author": {
+		"name": "ketong"
+	},
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/mamba-1024/vscode-extension.git",
+    "branch": "main"
+  },
   "engines": {
     "vscode": "^1.70.0"
   },
