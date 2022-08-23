@@ -1,8 +1,8 @@
 {
   "name": "well-being",
   "displayName": "well-being",
-  "description": "healthy code",
-  "version": "0.0.1",
+  "description": "well-being 是一款简易的 Vscode 插件，它可以自定义提醒时间，告诉开发者可以适当的休息一下",
+  "version": "0.0.2",
   "publisher": "ketong",
 	"author": {
 		"name": "ketong"
@@ -12,6 +12,7 @@
     "url": "https://github.com/mamba-1024/vscode-extension.git",
     "branch": "main"
   },
+  "icon": "media/healthy.png",
   "engines": {
     "vscode": "^1.70.0"
   },
