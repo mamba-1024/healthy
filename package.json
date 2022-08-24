@@ -2,7 +2,7 @@
   "name": "well-being",
   "displayName": "well-being",
   "description": "well-being 是一款简易的 Vscode 插件，它可以自定义提醒时间，告诉开发者可以适当的休息一下",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "ketong",
 	"author": {
 		"name": "ketong"
@@ -29,7 +29,15 @@
       {
         "command": "well-being.healthy",
         "title": "Well Being"
-      }
+      },
+      {
+				"command": "well-being.refresh",
+				"title": "刷新",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			}
     ],
     "viewsContainers": {
 			"activitybar": [
@@ -48,7 +56,16 @@
 					"icon": "media/healthy.svg"
         }
       ]
-		}
+		},
+    "menus": {
+			"view/title": [
+				{
+					"command": "well-being.refresh",
+					"when": "view == well-being",
+					"group": "navigation"
+				}
+			]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
