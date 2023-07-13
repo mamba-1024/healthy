@@ -22,8 +22,9 @@ export class HealthyPanel {
   private readonly _panel: vscode.WebviewPanel;
   private readonly _extensionUri: vscode.Uri;
   private _disposables: vscode.Disposable[] = [];
+  private _imgUrl: string | undefined;
 
-  public static createOrShow(extensionUri: vscode.Uri) {
+  public static createOrShow(extensionUri: vscode.Uri, imgUrl?: string) {
     const column = vscode.window.activeTextEditor
       ? vscode.window.activeTextEditor.viewColumn
       : undefined;
@@ -42,20 +43,19 @@ export class HealthyPanel {
       getWebviewOptions(extensionUri),
     );
 
-    HealthyPanel.currentPanel = new HealthyPanel(panel, extensionUri);
-  }
-
-  public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
-    HealthyPanel.currentPanel = new HealthyPanel(panel, extensionUri);
+    HealthyPanel.currentPanel = new HealthyPanel(panel, extensionUri, imgUrl);
   }
 
   public showError(message: string) {
     vscode.window.showErrorMessage(message);
   }
 
-  private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
+  private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, imgUrl?: string) {
     this._panel = panel;
     this._extensionUri = extensionUri;
+    if(imgUrl) {
+      this._imgUrl = imgUrl;
+    }
 
     // Set the webview's initial html content
     this._createPanel(this._panel.webview);
@@ -74,11 +74,16 @@ export class HealthyPanel {
               this.showError('请输入大于 0 的有效数字');
               return;
             }
+            if(message.imgUrl) {
+              this._imgUrl = message.imgUrl;
+            }
             // 关闭当前 panel
             this.dispose();
             // 重新启动一个定时器任务
-            new Timer({ time: message.text }).start(extensionUri);
+            new Timer({ time: message.text, imgUrl: this._imgUrl }).start(extensionUri);
             break;
+          case 'view':
+            vscode.window.showErrorMessage('请输入自定义图片地址');
         }
       },
       null,
@@ -127,26 +132,20 @@ export class HealthyPanel {
 				<link href="${stylesMainUri}" rel="stylesheet">
 
         <title>healthy warning</title>
-
-        <style>
-            body {
-                margin: 0 auto;
-                text-align: center;
-            }
-            h4 {
-                font-size: 1.5em;
-                color: #666;
-                margin-top: 5em;
-                margin-bottom: 3em;
-            }
-        </style>
     </head>
     <body>
-        <h4>休息一下吧，起来喝杯水，身体是革命的本钱 </h4>
-        <img src="${livePngSrc}" width="550" />
+        <div class="content">
+          <h4 class="title">休息一下吧，起来喝杯水，身体是革命的本钱1 </h4>
+          <img id='img' src="${this._imgUrl || livePngSrc}" width="550" />
+        </div>
         <div>
           <label for="time">自定义时间（单位分钟）:</label>
-          <input type="number" value="30" min="0" id="time" name="time" required placeholder='请输入自定义时间，单位是分钟'/>
+          <input class="input" type="number" value="30" min="0" id="time" name="time" required placeholder='请输入自定义时间，单位是分钟'/>
+        </div>
+        <div>
+          <label for="time">自定义图片:</label>
+          <input class="input" type="text" id="imgUrl" required placeholder='请输入自定义图片地址'/>
+          <input type="button" id='preview' value="预览图片" />
         </div>
         <div>
           <input type="button" id='submit' value="开始" />
